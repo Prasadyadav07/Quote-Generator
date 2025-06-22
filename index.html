@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>InspireMe - Quote Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>InspireMe 💡</h1>
+
+    <div class="quote-box">
+      <div id="loader" class="loader"></div>
+      <p id="quote">Fetching quote...</p>
+      <span id="author"></span>
+    </div>
+
+    <div class="btn-group">
+      <button onclick="getQuote()">🎲 New Quote</button>
+      <button onclick="copyQuote()">📋 Copy</button>
+      <button onclick="tweetQuote()">🐦 Tweet</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
