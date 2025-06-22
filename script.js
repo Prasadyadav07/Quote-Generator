@@ -2,19 +2,27 @@ const quoteText = document.getElementById("quote");
 const authorText = document.getElementById("author");
 const loader = document.getElementById("loader");
 
-async function getQuote() {
+const quotes = [
+  { text: "Be yourself; everyone else is already taken.", author: "Oscar Wilde" },
+  { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+  { text: "Dream big and dare to fail.", author: "Norman Vaughan" },
+  { text: "Stay hungry, stay foolish.", author: "Steve Jobs" },
+  { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
+  { text: "Everything you can imagine is real.", author: "Pablo Picasso" },
+  { text: "Don’t watch the clock; do what it does. Keep going.", author: "Sam Levenson" },
+  { text: "Success is not in what you have, but who you are.", author: "Bo Bennett" },
+  { text: "You miss 100% of the shots you don’t take.", author: "Wayne Gretzky" },
+  { text: "Great minds discuss ideas; average minds discuss events; small minds discuss people.", author: "Eleanor Roosevelt" }
+];
+
+function getQuote() {
   showLoading();
-  try {
-    const res = await fetch("https://type.fit/api/quotes");
-    const data = await res.json();
-    const random = data[Math.floor(Math.random() * data.length)];
-    quoteText.innerText = `"${random.text}"`;
-    authorText.innerText = `– ${random.author || "Unknown"}`;
-  } catch (err) {
-    quoteText.innerText = "Failed to fetch quote 😕";
-    authorText.innerText = "";
-  }
-  hideLoading();
+  setTimeout(() => {
+    const random = quotes[Math.floor(Math.random() * quotes.length)];
+    quoteText.innerText = "${random.text}";
+    authorText.innerText = – ${random.author || "Unknown"};
+    hideLoading();
+  }, 500);
 }
 
 function copyQuote() {
@@ -25,8 +33,8 @@ function copyQuote() {
 }
 
 function tweetQuote() {
-  const tweet = `${quoteText.innerText} ${authorText.innerText}`;
-  const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
+  const tweet = ${quoteText.innerText} ${authorText.innerText};
+  const tweetUrl = https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)};
   window.open(tweetUrl, "_blank");
 }
 
@@ -42,4 +50,4 @@ function hideLoading() {
   authorText.style.display = "block";
 }
 
-getQuote();
+getQuote(); // Load on page start
