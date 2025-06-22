@@ -50,4 +50,4 @@ function hideLoading() {
   authorText.style.display = "block";
 }
 
-getQuote(); // Load on page start
+getQuote();
