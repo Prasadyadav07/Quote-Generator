@@ -154,10 +154,4 @@ body.dark button:hover {
 }
 
 input:checked + .slider {
-  background-color: #764ba2;
-}
-
-input:checked + .slider:before {
-  transform: translateX(22px);
-}
-
+  background-color:
