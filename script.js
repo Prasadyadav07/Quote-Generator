@@ -1,4 +1,4 @@
-window.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const quoteText = document.getElementById("quote");
   const authorText = document.getElementById("author");
   const loader = document.getElementById("loader");
@@ -24,7 +24,6 @@ window.addEventListener("DOMContentLoaded", () => {
       quoteText.innerText = random.text;
       authorText.innerText = `– ${random.author || "Unknown"}`;
       hideLoading();
-      animateQuote();
     }, 500);
   }
 
@@ -53,16 +52,7 @@ window.addEventListener("DOMContentLoaded", () => {
     authorText.style.display = "block";
   }
 
-  function animateQuote() {
-    quoteText.style.opacity = 0;
-    authorText.style.opacity = 0;
-    setTimeout(() => {
-      quoteText.style.animation = "fadeIn 0.5s forwards";
-      authorText.style.animation = "fadeIn 0.5s forwards";
-    }, 100);
-  }
-
-  // 🌙 Theme toggle
+  // ✅ Dark mode toggle
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
     document.body.classList.add("dark");
@@ -80,4 +70,3 @@ window.addEventListener("DOMContentLoaded", () => {
 
   getQuote();
 });
-
