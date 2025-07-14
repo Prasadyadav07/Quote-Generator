@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { text: "Great minds discuss ideas; average minds discuss events; small minds discuss people.", author: "Eleanor Roosevelt" }
   ];
 
-  window.getQuote = function () {
+  function getQuote() {
     showLoading();
     setTimeout(() => {
       const random = quotes[Math.floor(Math.random() * quotes.length)];
@@ -25,20 +25,20 @@ document.addEventListener("DOMContentLoaded", () => {
       authorText.innerText = `– ${random.author || "Unknown"}`;
       hideLoading();
     }, 500);
-  };
+  }
 
-  window.copyQuote = function () {
+  function copyQuote() {
     const quote = quoteText.innerText + "\n" + authorText.innerText;
     navigator.clipboard.writeText(quote).then(() => {
       alert("Quote copied to clipboard!");
     });
-  };
+  }
 
-  window.tweetQuote = function () {
+  function tweetQuote() {
     const tweet = `${quoteText.innerText} ${authorText.innerText}`;
     const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
     window.open(tweetUrl, "_blank");
-  };
+  }
 
   function showLoading() {
     loader.style.display = "block";
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     authorText.style.display = "block";
   }
 
-  // ✅ Dark mode toggle
+  // Theme toggle logic
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
     document.body.classList.add("dark");
@@ -61,14 +61,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   themeSwitch.addEventListener("change", () => {
     document.body.classList.toggle("dark");
-    if (document.body.classList.contains("dark")) {
-      localStorage.setItem("theme", "dark");
-    } else {
-      localStorage.setItem("theme", "light");
-    }
+    localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
   });
 
-  // Load initial quote
+  // Button bindings
+  document.getElementById("newQuoteBtn").addEventListener("click", getQuote);
+  document.getElementById("copyBtn").addEventListener("click", copyQuote);
+  document.getElementById("tweetBtn").addEventListener("click", tweetQuote);
+
+  // Initial
   getQuote();
 });
-
