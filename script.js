@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.open(url, "_blank");
   }
 
-  // Dark Mode Logic
   const themeSwitch = document.getElementById("themeSwitch");
   const currentTheme = localStorage.getItem("theme");
   if (currentTheme === "dark") {
@@ -64,11 +63,9 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
   });
 
-  // Event Listeners
   document.getElementById("newQuote").addEventListener("click", getQuote);
   document.getElementById("copyQuote").addEventListener("click", copyQuote);
   document.getElementById("tweetQuote").addEventListener("click", tweetQuote);
 
-  // Initial load
   getQuote();
 });
