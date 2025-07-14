@@ -89,3 +89,81 @@ button:hover {
     padding: 8px 16px;
   }
 }
+
+/* 🌙 Dark Mode Styles */
+body.dark {
+  background: linear-gradient(135deg, #121212, #1f1f1f);
+  color: #e0e0e0;
+}
+
+body.dark .container {
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+body.dark button {
+  background: #333;
+  color: #fff;
+}
+
+body.dark button:hover {
+  background: #444;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.mode-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 24px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #764ba2;
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
