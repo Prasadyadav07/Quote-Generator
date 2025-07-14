@@ -1,3 +1,4 @@
+
 const quoteText = document.getElementById("quote");
 const authorText = document.getElementById("author");
 const loader = document.getElementById("loader");
@@ -59,5 +60,25 @@ function animateQuote() {
     authorText.style.animation = "fadeIn 0.5s forwards";
   }, 100);
 }
+
+// 🌙 Dark mode toggle logic
+const themeSwitch = document.getElementById("themeSwitch");
+
+window.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    themeSwitch.checked = true;
+  }
+});
+
+themeSwitch.addEventListener("change", () => {
+  document.body.classList.toggle("dark");
+  if (document.body.classList.contains("dark")) {
+    localStorage.setItem("theme", "dark");
+  } else {
+    localStorage.setItem("theme", "light");
+  }
+});
 
 getQuote();
