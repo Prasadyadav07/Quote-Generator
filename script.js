@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { text: "Great minds discuss ideas; average minds discuss events; small minds discuss people.", author: "Eleanor Roosevelt" }
   ];
 
-  function getQuote() {
+  window.getQuote = function () {
     showLoading();
     setTimeout(() => {
       const random = quotes[Math.floor(Math.random() * quotes.length)];
@@ -25,20 +25,20 @@ document.addEventListener("DOMContentLoaded", () => {
       authorText.innerText = `– ${random.author || "Unknown"}`;
       hideLoading();
     }, 500);
-  }
+  };
 
-  function copyQuote() {
+  window.copyQuote = function () {
     const quote = quoteText.innerText + "\n" + authorText.innerText;
     navigator.clipboard.writeText(quote).then(() => {
       alert("Quote copied to clipboard!");
     });
-  }
+  };
 
-  function tweetQuote() {
+  window.tweetQuote = function () {
     const tweet = `${quoteText.innerText} ${authorText.innerText}`;
     const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
     window.open(tweetUrl, "_blank");
-  }
+  };
 
   function showLoading() {
     loader.style.display = "block";
@@ -68,5 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Load initial quote
   getQuote();
 });
+
