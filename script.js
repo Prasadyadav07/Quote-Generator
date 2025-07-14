@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const quoteText = document.getElementById("quote");
   const authorText = document.getElementById("author");
   const loader = document.getElementById("loader");
-  const themeSwitch = document.getElementById("themeSwitch");
 
   const quotes = [
     { text: "Be yourself; everyone else is already taken.", author: "Oscar Wilde" },
@@ -17,29 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { text: "Great minds discuss ideas; average minds discuss events; small minds discuss people.", author: "Eleanor Roosevelt" }
   ];
 
-  function getQuote() {
-    showLoading();
-    setTimeout(() => {
-      const random = quotes[Math.floor(Math.random() * quotes.length)];
-      quoteText.innerText = random.text;
-      authorText.innerText = `– ${random.author || "Unknown"}`;
-      hideLoading();
-    }, 500);
-  }
-
-  function copyQuote() {
-    const quote = quoteText.innerText + "\n" + authorText.innerText;
-    navigator.clipboard.writeText(quote).then(() => {
-      alert("Quote copied to clipboard!");
-    });
-  }
-
-  function tweetQuote() {
-    const tweet = `${quoteText.innerText} ${authorText.innerText}`;
-    const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
-    window.open(tweetUrl, "_blank");
-  }
-
   function showLoading() {
     loader.style.display = "block";
     quoteText.style.display = "none";
@@ -52,9 +28,33 @@ document.addEventListener("DOMContentLoaded", () => {
     authorText.style.display = "block";
   }
 
-  // Theme toggle logic
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
+  function getQuote() {
+    showLoading();
+    setTimeout(() => {
+      const random = quotes[Math.floor(Math.random() * quotes.length)];
+      quoteText.innerText = random.text;
+      authorText.innerText = `– ${random.author}`;
+      hideLoading();
+    }, 500);
+  }
+
+  function copyQuote() {
+    const fullQuote = `${quoteText.innerText}\n${authorText.innerText}`;
+    navigator.clipboard.writeText(fullQuote).then(() => {
+      alert("Quote copied to clipboard!");
+    });
+  }
+
+  function tweetQuote() {
+    const tweet = `${quoteText.innerText} ${authorText.innerText}`;
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
+    window.open(url, "_blank");
+  }
+
+  // Dark Mode Logic
+  const themeSwitch = document.getElementById("themeSwitch");
+  const currentTheme = localStorage.getItem("theme");
+  if (currentTheme === "dark") {
     document.body.classList.add("dark");
     themeSwitch.checked = true;
   }
@@ -64,11 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
   });
 
-  // Button bindings
-  document.getElementById("newQuoteBtn").addEventListener("click", getQuote);
-  document.getElementById("copyBtn").addEventListener("click", copyQuote);
-  document.getElementById("tweetBtn").addEventListener("click", tweetQuote);
+  // Event Listeners
+  document.getElementById("newQuote").addEventListener("click", getQuote);
+  document.getElementById("copyQuote").addEventListener("click", copyQuote);
+  document.getElementById("tweetQuote").addEventListener("click", tweetQuote);
 
-  // Initial
+  // Initial load
   getQuote();
 });
