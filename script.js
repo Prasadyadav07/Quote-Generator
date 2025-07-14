@@ -19,9 +19,10 @@ function getQuote() {
   showLoading();
   setTimeout(() => {
     const random = quotes[Math.floor(Math.random() * quotes.length)];
-    quoteText.innerText = "${random.text}";
-    authorText.innerText = – ${random.author || "Unknown"};
+    quoteText.innerText = random.text;
+    authorText.innerText = `– ${random.author || "Unknown"}`;
     hideLoading();
+    animateQuote();
   }, 500);
 }
 
@@ -33,8 +34,8 @@ function copyQuote() {
 }
 
 function tweetQuote() {
-  const tweet = ${quoteText.innerText} ${authorText.innerText};
-  const tweetUrl = https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)};
+  const tweet = `${quoteText.innerText} ${authorText.innerText}`;
+  const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
   window.open(tweetUrl, "_blank");
 }
 
@@ -48,6 +49,15 @@ function hideLoading() {
   loader.style.display = "none";
   quoteText.style.display = "block";
   authorText.style.display = "block";
+}
+
+function animateQuote() {
+  quoteText.style.opacity = 0;
+  authorText.style.opacity = 0;
+  setTimeout(() => {
+    quoteText.style.animation = "fadeIn 0.5s forwards";
+    authorText.style.animation = "fadeIn 0.5s forwards";
+  }, 100);
 }
 
 getQuote();
